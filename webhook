@@ -1,0 +1,24 @@
+#! /usr/bin/env node
+var Hook = require('hook.io').Hook;
+var http = require('http');
+
+var webhook = new Hook( { name: 'webhook' });
+
+webhook.connect();
+
+webhook.on('ready', function(){
+  http.createServer(function(req, res){
+    
+    var body = '';
+    
+    req.on('data', function(data){
+      body += data;
+    });
+    
+    req.on('end', function(){
+      webhook.emit('out.post', body)
+      res.end();
+    });
+    
+  }).listen(9000);
+});
