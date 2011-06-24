@@ -1,0 +1,19 @@
+#! /usr/bin/env node
+var Webhook = require('../lib/webhook').Webhook;
+
+var webhookServer = new Webhook( { name: 'webhook-server' });
+webhookServer.listen();
+
+
+webhookServer.on('ready', function(){
+  
+  console.log('http webhook server started on port '.green + '9000'.yellow);
+  
+});
+
+webhookServer.on('*', function(ev){
+  
+  console.log(ev);
+  
+});
+
