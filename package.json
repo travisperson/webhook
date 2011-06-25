@@ -2,14 +2,15 @@
   "author": "Marak Squires <marak.squires@gmail.com>",
   "name": "hook.io-webhook",
   "description": "a simple hook.io hook that listens for http requests and emits their headers and body to your hook.io cloud ( a post / receive hook )",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/Marak/hook.io-webhook.git"
   },
   "bin": {
-     "hookio-webhook": "./webhook"
+     "hookio-webhook": "./bin/webhook"
    },
+  "main": "./lib/webhook",
   "engines": {
     "node": ">= v0.4.7"
   },
