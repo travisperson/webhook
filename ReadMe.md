@@ -1,22 +1,35 @@
 # Installation
 
-     npm install hook.io-webhook
+     npm install hook.io-webhook -g
 
 # Usage
 
 ## Command Line
 
-    hookio-webhook
+     hookio-webhook
     
 ## Programmatically
 
 ```javascript
+#! /usr/bin/env node
 var Webhook = require('../lib/webhook').Webhook;
 
-var webhookServer = new Webhook( { name: 'webhook-server', options: { port: 9001 } });
+var webhookServer = new Webhook({
+  name: 'webhook-server',
+  port: 9001,
+  debug: true
+});
 
-webhookServer.on('ready', function(){
-  console.log('http webhook server started on port 9001');
+webhookServer.on('hook::ready', function(){
+
+  webhookServer.log(this.name, 'http server listening', "9001");
+
+  webhookServer.on('*::request', function(event, data) {
+
+    webhookServer.log(this.name, event, data);
+
+  });
+
 });
 
 webhookServer.start();
