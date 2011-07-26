@@ -8,15 +8,10 @@ var webhookServer = new Webhook({
 });
 
 webhookServer.on('hook::ready', function(){
-
   webhookServer.log(this.name, 'http server listening', "9001");
-
   webhookServer.on('*::request', function(event, data) {
-
     webhookServer.log(this.name, event, data);
-
   });
-
 });
 
 webhookServer.start();
