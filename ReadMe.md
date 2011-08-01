@@ -4,11 +4,12 @@
 
 # Usage
 
-## Command Line
-
      hookio-webhook
+
+*Starts up a webserver which takes all incoming HTTP requests and emits the request headers and body to your hook.io cloud*
+
     
-## Programmatically
+## Example
 
 ```javascript
 #! /usr/bin/env node
@@ -24,7 +25,7 @@ webhookServer.on('hook::ready', function(){
 
   webhookServer.log(this.name, 'http server listening', "9001");
 
-  webhookServer.on('*::request', function(event, data) {
+  webhookServer.on('*::request', function(data) {
 
     webhookServer.log(this.name, event, data);
 
@@ -35,4 +36,3 @@ webhookServer.on('hook::ready', function(){
 webhookServer.start();
 ```
 
-*Starts up a webserver which takes all incoming HTTP requests and emits the request headers and body to your hook.io cloud*
